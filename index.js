@@ -5,6 +5,11 @@ const GREEN = "GREEN";
 
 var simon = {
  sendColor: function(color){
+  
+  if(!simon.sequence.length){
+   // start a new game
+   simon.nextSequence();
+  }
   console.log("NEW COLOR: " + color); 
  },
  sequence: [],
@@ -12,6 +17,8 @@ var simon = {
  nextSequence: function(){
   var nextColor =simon.colors[Math.floor( Math.random() * simon.colors.length )];
   console.log("the random color is ", nextColor);
+  simon.sequence.push(nextColor);
+  console.log("the sequence ", simon.sequence);
  }
 };
 
