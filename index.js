@@ -10,10 +10,32 @@ var simon = {
    // start a new game
    simon.nextSequence();
   }
+  else {
+   
+   if (color === simon.sequence[simon.step]){
+    //go to next step
+    if(simon.step === simon.sequence.length-1){
+     console.log("sequence complete!");
+     simon.step = 0;
+     simon.nextSequence();
+    }
+    else {
+     simon.step++;
+    }
+   }
+   else {
+    //!!lose condition
+    alert("WRONG!!");
+    //to reset go back to empty array
+    simon.sequence = []
+    simon.step = 0;
+   }
+  }
   console.log("NEW COLOR: " + color); 
  },
  sequence: [],
  colors: [RED, BLUE, YELLOW, GREEN],
+ step: 0, 
  nextSequence: function(){
   var nextColor =simon.colors[Math.floor( Math.random() * simon.colors.length )];
   console.log("the random color is ", nextColor);
@@ -28,9 +50,3 @@ $(document).ready(function(){
  $("#yellow").click(function(){ simon.sendColor(YELLOW)});
  $("#green").click(function(){ simon.sendColor(GREEN)}); 
 })
-
-/* 
-1. Red
-2. Red, Blue
-3. Red, Blue, Yellow
-*/
